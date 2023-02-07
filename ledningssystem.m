@@ -146,14 +146,13 @@ while (a > 0)
 
     v = input("\nWish to continue? 1 for yes 0 for no ");
     if v == 1
+        close all
         continue
     elseif v == 0
         a = 0;
+        close all
         break
     else
         disp("Enter valid value! ")
     end
 end
-    
-
-
