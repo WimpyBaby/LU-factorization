@@ -1,5 +1,5 @@
-%("pipe_values.csv");
-
+% load("pipe_values.mat");
+% 
 % k = pipevalues.k;
 % T = pipevalues.L;
 % r = 1;
