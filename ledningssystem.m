@@ -1,4 +1,4 @@
-%load("pipe_values.csv")
+%("pipe_values.csv");
 
 % k = pipevalues.k;
 % T = pipevalues.L;
@@ -20,7 +20,7 @@
 % p6 = 0;
 % 
 % A = [q1 q2 q3; q4 q5 q6; q7 q8 q9];
-% b = [-k(1).*T(1).*inpr; -k(6).*T(6).*p6; -k(5).*T(5).*p5];
+% b = [-k(1).*T(1).*inpr; 0; 0];
 % 
 % [L,U,P] = lu(A);
 % 
@@ -55,8 +55,8 @@
 % end
 % end
 
-
-load("nat6400.mat");
+file = input('what file would you like to input? ', 's');
+load(file);
 
 Lr = 200;
 kr = 0.01;
@@ -94,8 +94,8 @@ while (a > 0)
     x = U\y;
 
     ave_psi = mean(x);
-    max = max(x);
-    min = min(x);
+    maximum = max(x);
+    minimum = min(x);
 
     Ar = reshape(x,80,80);
 
@@ -108,11 +108,13 @@ while (a > 0)
             case 1
                 stem(x);
                 hold on
-                yline(ave_psi)
-                yline(min)
-                yline(max)
+                yline(ave_psi, "red", "--")
+                yline(minimum, "green", "--")
+                yline(maximum, "magenta", "--")
 
                 hold off
+
+                legend("node", "average", "minimum", "maximum")
 
             case 2
                 surf(X,Y,Ar);
@@ -120,11 +122,13 @@ while (a > 0)
                 nexttile
                 stem(x);
                 hold on
-                yline(ave_psi)
-                yline(min)
-                yline(max)
+                yline(ave_psi, "red", "--")
+                yline(minimum, "green", "--")
+                yline(maximum, "magenta", "--")
 
                 hold off
+
+                legend("node", "average" ,"minimum", "maximum")
     
                 nexttile
                 surf(X,Y,Ar);
@@ -146,6 +150,8 @@ while (a > 0)
     elseif v == 0
         a = 0;
         break
+    else
+        disp("Enter valid value! ")
     end
 end
     
